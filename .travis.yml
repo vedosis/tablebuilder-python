@@ -4,6 +4,7 @@ python:
   - "2.7"
   - "3.5"
   - "3.5-dev"
-install:
- - "pip install -r requirements.txt"
-script: "python -m pytest tests"
+install: "bash .travis/install.sh"
+script: "bash .travis/script.sh"
+after_success:
+  - "bash <(curl -s https://codecov.io/bash)"
