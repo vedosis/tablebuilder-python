@@ -5,6 +5,6 @@ python:
   - "3.5"
   - "3.5-dev"
 install: "./.travis/install.sh"
-script: "./.travis/script.sh"
+script: "./.travis/run.sh"
 after_success:
   - "bash <(curl -s https://codecov.io/bash)"
