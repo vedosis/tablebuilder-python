@@ -4,7 +4,7 @@ python:
   - "2.7"
   - "3.5"
   - "3.5-dev"
-install: "bash ${TRAVIS_BUILD_DIR}/.travis/install.sh"
-script: "bash ${TRAVIS_BUILD_DIR}/.travis/script.sh"
+install: "./.travis/install.sh"
+script: "./.travis/script.sh"
 after_success:
   - "bash <(curl -s https://codecov.io/bash)"
