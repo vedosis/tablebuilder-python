@@ -11,11 +11,6 @@ rows = [
 ]
 
 
-def row_generator():
-    for i in range(20):
-        yield ['This', 'is', 'a', 'generator', 'row']
-
-
 def test_null_headers():
     max_length = resolve_max_width(1, [], rows)
     assert max_length == 14

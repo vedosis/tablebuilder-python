@@ -11,18 +11,25 @@ def main():
         ['99921-58-10-7', 'Divine Comedy', 'Dante Alighieri'],
         ['9971-5-0210-0', 'A Tale of Two Cities', 'Charles Dickens']
     ]
+    table.render()
 
     table.rows.append(TableSeparator())
     table.rows.append(['80-902734-1-6', 'And Then There Were None Is A Really Long Title', 'Agatha Christie'])
     table.rows.append(['960-425-059-0', 'The Lord of the Rings', 'J. R. R. Tolkien'])
-
     table.render()
 
-    table.column_widths = [20, None, None]
-    # table.render()
+    table.column_widths = [0, 35, None]
+    table.render()
 
-    table.column_widths[2] = 40
-    # table.render()
+    table.column_widths[1] = 25
+    table.render()
+
+    table.padding = 2
+    table.padding_char = "."
+    table.borders.horizontal_char = u'\u2501'
+    table.borders.vertical_char = u'\u2503'
+    table.borders.crossing_char = u'\u254B'
+    table.render()
 
     table.style = TableStyle.Compact
     table.render()

@@ -23,3 +23,9 @@ def test_short_first_word():
     (base, overflow) = truncate_line("In Liberty we assert", 9)
     assert base == "In"
     assert overflow == "Liberty we assert"
+
+
+def test_break_at_space():
+    (base, overflow) = truncate_line('And Then There Were None Is A Really Long Title', 25)
+    assert base == "And Then There Were None"
+    assert overflow == "Is A Really Long Title"
