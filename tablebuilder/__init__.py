@@ -275,22 +275,24 @@ class Table(object):
         overwidth = []
         if isinstance(row, TableSeparator):
             for i in range(len(widths) + len(borders)):
+                index = int(i / 2)
                 if i % 2 == 0:
-                    for char in borders[i / 2]:
+                    for char in borders[index]:
                         if char == self.borders.vertical_char:
                             output_string += self.borders.crossing_char
                         else:
                             output_string += self.borders.horizontal_char
                 else:
-                    output_string += self.borders.horizontal_char * int(widths[i / 2])
+                    output_string += self.borders.horizontal_char * int(widths[index])
         else:
             for i in range(len(widths) + len(borders)):
+                index = int(i / 2)
                 if i % 2 == 0:
-                    output_string += borders[i / 2]
+                    output_string += borders[index]
                 else:
-                    print_str = row[i / 2] if row[i / 2] is not None else self.padding_char
-                    (element, overflow) = truncate_line(print_str, widths[i / 2])
-                    output_string += element.ljust(widths[i / 2], self.padding_char)
+                    print_str = row[index] if row[index] is not None else self.padding_char
+                    (element, overflow) = truncate_line(print_str, widths[index])
+                    output_string += element.ljust(widths[index], self.padding_char)
                     overwidth.append(overflow)
 
         self.write_line(output_string, self.style)
