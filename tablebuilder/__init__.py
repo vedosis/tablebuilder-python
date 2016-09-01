@@ -86,9 +86,7 @@ def resolve_min_width(index_position, headers, rows):
 
     row_max = 0
     if len(rows):
-        row_max = max(
-            [len(x[index_position]) for x in rows if len(x) > index_position]
-        )
+        row_max = max([max(len(word) for word in x[index_position].split(' ')) for x in rows if len(x) > index_position])
     return max([row_max, header_max])
 
 

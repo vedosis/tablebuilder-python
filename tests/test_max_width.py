@@ -1,4 +1,4 @@
-from tablebuilder import resolve_max_width, TableSeparator
+from tablebuilder import resolve_max_width, resolve_min_width, TableSeparator
 
 headers = ['This is a long header', 'Short', None]
 rows = [
@@ -29,3 +29,8 @@ def test_header_max():
 def test_out_of_index():
     max_length = resolve_max_width(3, headers, rows)
     assert max_length == 0
+
+
+def test_min_width():
+    min_length = resolve_min_width(2, headers, rows)
+    assert min_length == 6

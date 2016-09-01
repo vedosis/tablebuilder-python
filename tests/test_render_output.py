@@ -1,4 +1,5 @@
 from tablebuilder import Table, TableSeparator
+from pytest import raises
 
 
 def output_wrapper(output):
@@ -67,3 +68,34 @@ def test_column_widths():
     assert comparison == "\n".join(output)
 
 
+def test_column_floats():
+    output = []
+    monkey_patch_write_line = output_wrapper(output)
+    Table.write_line = monkey_patch_write_line
+    table = build_table()
+    table.column_widths = [0, 25.0, None]
+    table.render()
+    comparison = (
+        "+===============+===================+==========================================+\n"
+        "| ISBN          | Title             | Author                                   |\n"
+        "+===============+===================+==========================================+\n"
+        "| 99921-58-10-7 | Divine Comedy     | Dante Alighieri                          |\n"
+        "| 9971-5-0210-0 | A Tale of Two     | Charles Dickens                          |\n"
+        "|               | Cities            |                                          |\n"
+        "+===============+===================+==========================================+\n"
+        "| 80-902734-1-6 | And Then There    | Agatha Christie                          |\n"
+        "|               | Were None Is A    |                                          |\n"
+        "|               | Really Long Title |                                          |\n"
+        "| 960-425-059-0 | The Lord of the   | J. R. R. Tolkien                         |\n"
+        "|               | Rings             |                                          |\n"
+        "+===============+===================+==========================================+"
+    )
+    assert comparison == "\n".join(output)
+
+
+def test_invalid_column():
+    # raise ValueError("'Table.column_widths' cannot be of type '" + str(type(value)) + "'. Only int, float, None are supported.")
+    table = build_table()
+    table.column_widths = ["0", 0, 0]
+    with raises(ValueError, message="'Table.column_widths' cannot be of type 'str'. Only int, float, None are supported."):
+        table.render()
